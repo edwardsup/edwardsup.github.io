@@ -280,7 +280,7 @@ button:hover::before {
 @keyframes flare
 {
   0%   { background-position: -40px; }
-  100% { background-position: 350px; }
+  100% { background-position: 315px; }
 }
 
 @keyframes sparkle
