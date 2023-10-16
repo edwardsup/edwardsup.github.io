@@ -36,16 +36,6 @@ header nav {
   margin: 40px auto;
   justify-content: space-between;
 }
-header nav h1.brand {
-  padding-bottom: 15px;
-}
-header nav h1.brand a {
-  font-size: 60px;
-  font-weight: 800;
-  color: var(--third-clr-);
-  text-decoration: none;
-  text-align: center;
-}
 header nav ul {
   position: relative;
   display: flex;
@@ -130,14 +120,42 @@ nav label::after {
   transition: 0.1s;
 }
 nav label:active::after {
-  width: 45px;
+  width: 40px;
 }
 nav input:checked + body {
   background: var(--prmy-clr-);
 }
+
+label svg {
+  position: absolute;
+  z-index: 1000;
+}
+
+
 a svg {
   fill: var(--scnd-clr-);
 }
+
+.moon {
+  top: 2px;
+  right: 2px;
+  width: 34px;
+  fill: var(--third-clr-);
+}
+.sun {
+  top: 7px;
+  left: 8px;
+  width: 24px;
+  fill: #dffaf1;
+}
+
+nav input:checked + label .sun {
+  fill: var(--third-clr-);
+}
+nav input:checked + label .moon{
+fill: #dffaf1;
+}
+
 #Layer_1 {
   fill: var(--prmry-clr-);
 }
@@ -167,12 +185,10 @@ h1 {
   font-weight: 800;
   text-shadow: 0px 0px 3px var(--scnd-clr-);
 }
-.brand,
 button {
   overflow: hidden;
   position: relative;
 }
-.brand a::before,
 button::before {
   content: "";
   position: absolute;
@@ -194,13 +210,89 @@ button:hover::before {
   transition: 1s;
   transform: rotate(-20deg) translateX(400px);
 }
-.brand a::before {
-  animation: shining 2s infinite;
-  animation-delay: 11s;
+.shiny
+{
+  color: var(--third-clr-);
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-size:  51px;
+  font-weight: 900;
+  position: relative;
+  text-transform: uppercase;
 }
-.brand a:hover::before {
-  animation: shining 2s infinite;
+
+.shiny::before
+{
+	animation: flare 5s infinite;
+	-webkit-animation: flare 5s infinite;
+  background-image: linear-gradient(65deg, transparent 20%, rgba(255, 255, 255, 0.6) 20%, rgba(255, 255, 255, 0.4) 27%, transparent 27%, transparent 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  content: "Dwar";
+  display: block;
+  position: absolute;
 }
+
+.shiny::after
+{
+  content: "Dwar";
+  display: block;
+  position: absolute;
+  text-shadow: 0 1px #00ec9d, 0 2px #199c70, 0 3px #199c70, 0 4px #199c70;
+  top: 0;
+  z-index: -1;
+}
+
+.inner-shiny::after, .inner-shiny::before
+{
+	animation: sparkle 6s infinite;
+	-webkit-animation: sparkle 6s infinite;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+	background: #FFF;
+  border-radius: 100%;
+  box-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #FFF, 0 0 25px #FFF, 0 0 30px #FFF, 0 0 35px #FFF;
+  content: "";
+  display: block;
+  height: 10px;
+  width: 10px;
+  opacity: 0.9;
+  position: absolute;
+}
+
+.inner-shiny::before
+{
+	animation-delay: 0.2s;
+	-webkit-animation-delay: 0.2s;
+  height: 7px;
+  left: 0em;
+  top: 0.3em;
+  width: 7px;
+}
+
+.inner-shiny::after
+{
+  top: 1.1em;
+  right: -1px;
+}
+
+@keyframes flare
+{
+  0%   { background-position: -40px; }
+  100% { background-position: 350px; }
+}
+
+@keyframes sparkle
+{
+  0%   { opacity: 0; }
+  30%  { opacity: 0; }
+  40%  { opacity: 0.8; }
+  60%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+
 @keyframes flicker {
   0% {
     opacity: 0;
@@ -774,7 +866,7 @@ span.tech svg {
 @media (min-width: 768px) and (max-width: 1024px) {
   header nav {
     position: fixed;
-    padding: 0 50px;
+    padding: 20px 50px;
     top: 0;
     margin: 0 auto;
     width: 100%;
@@ -909,9 +1001,7 @@ span.tech svg {
   h1#greets {
     height: 57px;
   }
-  main.container {
-    max-width: 900px;
-  }
+
   article.first,
   article#aboutMe,
   article#skills,
@@ -1209,12 +1299,15 @@ span.tech svg {
   }
 }
 @media (min-width: 267px) and (max-width: 767px) {
-  header nav h1.brand a {
-    font-size: 36px;
-    font-weight: 800;
+  .shiny
+  {
     color: var(--third-clr-);
-    text-decoration: none;
-    text-align: center;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    font-size:  33px;
+    font-weight: 900;
+    position: relative;
+    text-transform: uppercase;
   }
   header nav {
     padding: 5px 20px;
@@ -1328,7 +1421,7 @@ span.tech svg {
     content: "";
     width: 100%;
     height: 100vh;
-    top: 54px;
+    top: 50px;
     right: 0;
     background-color: rgba(88, 84, 84, 0.7);
     position: absolute;
@@ -1430,14 +1523,15 @@ span.tech svg {
   }
   span.socmed {
     max-width: 100%;
+    width: 88vw;
     height: 59px;
     display: flex;
     flex-wrap: wrap;
     margin: 100px auto;
     position: absolute;
     margin-bottom: 0;
-    gap: 39px;
-    justify-content: start;
+    gap: 29px;
+    justify-content: space-around;
     bottom: 0;
   }
   span.socmed svg {
@@ -1704,6 +1798,7 @@ span.tech svg {
     display: grid;
     place-items: center;
     border-radius: 50%;
+    padding: 0;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 20;
@@ -1711,12 +1806,12 @@ span.tech svg {
   #progress-scroll {
     display: block;
     background-color: #252d40;
-    height: calc(100% - 15px);
-    width: calc(100% - 15px);
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    font-size: 32px;
+    font-size: 42px;
     color: #dffaf1;
     z-index: 20;
   }
